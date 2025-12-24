@@ -1,0 +1,265 @@
+
+
+<style>
+    /* 動態按鈕動畫 */
+    @keyframes wawaPulse {
+        0% { box-shadow: 0 0 0 0 rgba(255, 229, 153, 0.7); transform: scale(1); }
+        70% { box-shadow: 0 0 0 15px rgba(255, 229, 153, 0); transform: scale(1.03); }
+        100% { box-shadow: 0 0 0 0 rgba(255, 229, 153, 0); transform: scale(1); }
+    }
+
+    .wawa-wrap {
+        max-width: 1000px;
+        margin: 0 auto;
+        background-color: #1D1137 !important; /* 二次確認背景 */
+    }
+
+    /* 標題區 */
+    .wawa-header {
+        margin-bottom: 50px;
+    }
+    .wawa-logo-emoji {
+        font-size: 40px;
+        display: inline-block;
+        padding: 10px;
+        border: 2px solid #FFE599;
+        border-radius: 50%;
+        margin-bottom: 20px;
+        box-shadow: 0 0 15px rgba(255, 229, 153, 0.3);
+    }
+    .wawa-title {
+        color: #FFFFFF !important;
+        font-size: 36px;
+        font-weight: bold;
+        margin: 0;
+        letter-spacing: 2px;
+    }
+    .wawa-subtitle {
+        color: #A97DD0 !important;
+        font-size: 16px;
+        letter-spacing: 4px;
+        margin-top: 5px;
+    }
+    .wawa-slogan {
+        color: #FFE599 !important;
+        font-size: 20px;
+        margin-top: 20px;
+    }
+
+    /* 英雄區佈局 */
+    .wawa-hero {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 30px;
+        margin-bottom: 60px;
+        text-align: left;
+    }
+    .wawa-hero-text {
+        flex: 1;
+        min-width: 300px;
+    }
+    .wawa-hero-img {
+        flex: 1;
+        min-width: 300px;
+        text-align: center;
+    }
+    .wawa-hero-img img {
+        width: 100%;
+        max-width: 350px;
+        border-radius: 20px;
+        box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+        transform: rotate(-2deg);
+        border: 4px solid #1D1137;
+    }
+
+    /* 按鈕樣式 */
+    .wawa-btn {
+        display: inline-block;
+        background-color: #FFE599 !important;
+        color: #1D1137 !important;
+        padding: 15px 40px;
+        border-radius: 50px;
+        font-weight: bold;
+        text-decoration: none !important;
+        margin-top: 20px;
+        transition: 0.3s;
+        box-shadow: 0 0 15px rgba(255, 229, 153, 0.4);
+    }
+    .wawa-btn:hover {
+        transform: scale(1.05);
+        opacity: 0.9;
+    }
+
+    /* 內容標籤切換區 */
+    .wawa-tabs {
+        margin-bottom: 30px;
+    }
+    .wawa-tab-btn {
+        background: transparent;
+        border: 1px solid #A97DD0;
+        color: #A97DD0;
+        padding: 8px 25px;
+        border-radius: 20px;
+        margin: 0 5px;
+        cursor: pointer;
+        font-weight: bold;
+    }
+    .wawa-tab-btn.active {
+        background: #FFE599 !important;
+        color: #1D1137 !important;
+        border-color: #FFE599 !important;
+    }
+
+    .wawa-content-box {
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(169, 125, 208, 0.2);
+        border-radius: 25px;
+        padding: 40px 20px;
+        min-height: 350px;
+    }
+
+    .hidden { display: none !important; }
+
+    /* 商品與好評內部樣式 */
+    .wawa-prod-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 30px;
+        justify-content: center;
+    }
+    .wawa-prod-item {
+        background: rgba(255, 255, 255, 0.03);
+        padding: 20px;
+        border-radius: 20px;
+        text-align: left;
+        border: 1px solid rgba(169, 125, 208, 0.1);
+        transition: transform 0.3s ease;
+    }
+    .wawa-prod-item:hover {
+        transform: translateY(-5px);
+        background: rgba(255, 255, 255, 0.06);
+    }
+    
+    .wawa-review-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
+    }
+    .wawa-review-card {
+        background: #1D1137;
+        padding: 20px;
+        border-radius: 15px;
+        border-left: 4px solid #FFE599;
+        text-align: left;
+    }
+
+    @media (max-width: 768px) {
+        .wawa-hero { text-align: center; }
+        .wawa-title { font-size: 28px; }
+    }
+</style>
+
+<!-- 關鍵修正：在外層 div 使用行內樣式，並強制設定寬度與最小高度 -->
+<div id="wawa-studio-app" style="background-color: #1D1137 !important; color: #F0F0F0 !important; font-family: 'Microsoft JhengHei', 'Heiti TC', sans-serif; width: 100% !important; min-height: 100vh !important; padding: 40px 10px !important; margin: 0 !important; box-sizing: border-box !important; display: block !important; text-align: center !important;">
+    <div class="wawa-wrap" style="background-color: #1D1137 !important;">
+        
+        <!-- 1. 頭部 -->
+        <div class="wawa-header">
+            <div class="wawa-logo-emoji">🔮</div>
+            <h1 class="wawa-title">娃娃仙姑</h1>
+            <div class="wawa-subtitle">TAROT STUDIO</div>
+            <div class="wawa-slogan">你的人生神秘引路者</div>
+        </div>
+
+        <!-- 2. 英雄形象區 -->
+        <div class="wawa-hero">
+            <div class="wawa-hero-text">
+                <h2 style="color: #A97DD0; font-size: 24px; margin-bottom: 15px;">在迷惘時刻，為你點亮心靈微光</h2>
+                <p style="color: #CCCCCC; line-height: 1.8;">
+                    我們提供專業的塔羅指引與能量療癒，協助你修復失落，找回未來的方向。無論是感情、工作或人生課題，這裡都有屬於你的答案。
+                </p>
+                <a href="#booking" class="wawa-btn">✉️ 立即預約占卜</a>
+            </div>
+            <div class="wawa-hero-img">
+                <img src="720696_0.jpg" alt="娃娃仙姑主視覺">
+            </div>
+        </div>
+
+        <!-- 3. 互動內容區 -->
+        <div class="wawa-tabs">
+            <button id="btn-prod" class="wawa-tab-btn active" onclick="showWawaTab('prod')">✨ 能量祕寶</button>
+            <button id="btn-rev" class="wawa-tab-btn" onclick="showWawaTab('rev')">💬 顧客好評</button>
+        </div>
+
+        <div class="wawa-content-box" style="background-color: rgba(255, 255, 255, 0.05) !important;">
+            <!-- 商品內容 -->
+            <div id="wawa-prod-content">
+                <div class="wawa-prod-grid">
+                    <!-- 商品 1: 蠟燭 -->
+                    <div class="wawa-prod-item">
+                        <img src="718595_0.jpg" alt="心靈香拓" style="width: 100%; border-radius: 15px; margin-bottom: 15px; aspect-ratio: 1/1; object-fit: cover;">
+                        <h3 style="color: #FFE599; font-size: 20px; margin-bottom: 10px;">心靈香拓 / 魔法蠟燭</h3>
+                        <p style="color: #BBB; font-size: 14px; margin-bottom: 15px;">特選淨化精油與天然晶石，為你打造療癒空間。</p>
+                        <a href="/products/candle" style="color: #A97DD0; text-decoration: none; font-weight: bold; border-bottom: 1px solid;">查看詳情 →</a>
+                    </div>
+                    <!-- 商品 2: 手鍊 -->
+                    <div class="wawa-prod-item">
+                        <img src="720697_0.jpg" alt="能量手鍊" style="width: 100%; border-radius: 15px; margin-bottom: 15px; aspect-ratio: 1/1; object-fit: cover;">
+                        <h3 style="color: #FFE599; font-size: 20px; margin-bottom: 10px;">開運能量手鍊</h3>
+                        <p style="color: #BBB; font-size: 14px; margin-bottom: 15px;">由仙姑親自挑選的水晶，調頻純化，將好運戴在手上。</p>
+                        <a href="/products/bracelet" style="color: #A97DD0; text-decoration: none; font-weight: bold; border-bottom: 1px solid;">查看詳情 →</a>
+                    </div>
+                    <!-- 商品 3: 戒指 -->
+                    <div class="wawa-prod-item">
+                        <img src="720698.jpg" alt="神祕戒指" style="width: 100%; border-radius: 15px; margin-bottom: 15px; aspect-ratio: 1/1; object-fit: cover;">
+                        <h3 style="color: #FFE599; font-size: 20px; margin-bottom: 10px;">神祕守護戒指</h3>
+                        <p style="color: #BBB; font-size: 14px; margin-bottom: 15px;">簡約精緻的設計，帶有祝福力量，時刻守護你的頻率。</p>
+                        <a href="/products/ring" style="color: #A97DD0; text-decoration: none; font-weight: bold; border-bottom: 1px solid;">查看詳情 →</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 好評內容 -->
+            <div id="wawa-rev-content" class="hidden">
+                <div class="wawa-review-grid">
+                    <div class="wawa-review-card" style="background-color: #1D1137 !important;">
+                        <p style="font-style: italic; color: #EEE;">"指引太準確了！讓我果斷做出了決定，現在感到輕鬆許多。"</p>
+                        <p style="color: #FFE599; margin-top: 10px; font-weight: bold;">- Jane (上班族)</p>
+                    </div>
+                    <div class="wawa-review-card" style="background-color: #1D1137 !important;">
+                        <p style="font-style: italic; color: #EEE;">"每晚的儀式感讓我不再焦慮，真的很感謝仙姑。"</p>
+                        <p style="color: #FFE599; margin-top: 10px; font-weight: bold;">- Kelly (療癒愛好者)</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 頁腳 -->
+        <div style="margin-top: 60px; opacity: 0.3; font-size: 12px; letter-spacing: 2px; color: #F0F0F0 !important;">
+            ✨ 你的生命，由你引領 ✨
+        </div>
+
+    </div>
+</div>
+
+<script>
+    function showWawaTab(type) {
+        const prodContent = document.getElementById('wawa-prod-content');
+        const revContent = document.getElementById('wawa-rev-content');
+        const btnProd = document.getElementById('btn-prod');
+        const btnRev = document.getElementById('btn-rev');
+
+        if (type === 'prod') {
+            prodContent.classList.remove('hidden');
+            revContent.classList.add('hidden');
+            btnProd.classList.add('active');
+            btnRev.classList.remove('active');
+        } else {
+            prodContent.classList.add('hidden');
+            revContent.classList.remove('hidden');
+            btnProd.classList.remove('active');
+            btnRev.classList.add('active');
+        }
+    }
+</script>
